@@ -3,64 +3,73 @@
 import { useEffect, useState } from "react";
 import { nav, studio, whatsappLink } from "@/lib/data";
 
-/** Barra fina no topo (como na referência) com menu em tela cheia. */
+export function Logo({ light = false }: { light?: boolean }) {
+  return (
+    <span className="flex items-center gap-2.5">
+      <svg viewBox="0 0 32 32" className="h-8 w-8 text-bronze" aria-hidden>
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" strokeWidth="1" />
+        <path d="M11 9h10M11 16h8M11 23h10M11 9v14" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      </svg>
+      <span className="leading-none">
+        <span className={`block font-serif text-[1.35rem] tracking-[0.12em] ${light ? "text-white" : "text-ink"}`}>STUDIO ELLO</span>
+        <span className="mt-0.5 block text-[0.55rem] font-medium tracking-[0.2em] text-bronze">PROJETOS E INTERIORES</span>
+      </span>
+    </span>
+  );
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [solid, setSolid] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > window.innerHeight * 0.8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("keydown", onKey);
-    };
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-  }, [open]);
-
-  const light = !solid && !open;
-
   return (
-    <>
-      <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${light ? "text-white" : "bg-white text-night"}`}>
-        <div className="mx-auto flex h-14 max-w-[calc(1160px+2rem)] items-center justify-between px-4 text-[0.82rem] md:max-w-[calc(1160px+4rem)] md:px-8">
-          <a href="#inicio" className="text-[1.05rem] font-semibold tracking-[-0.04em]">
-            {studio.name}®
-          </a>
-          <span className="hidden opacity-80 md:block">Online para todo o Brasil</span>
-          <span className="hidden opacity-80 lg:block">{studio.address}, São Paulo</span>
-          <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open} className="flex items-center gap-2 font-medium">
-            {open ? "Fechar" : "Menu"}
-            <span className="relative flex h-4 w-4 items-center justify-center border border-current" aria-hidden>
-              <span className="absolute h-px w-2 bg-current" />
-              <span className={`absolute h-2 w-px bg-current transition-transform ${open ? "scale-y-0" : ""}`} />
-            </span>
-          </button>
-        </div>
-      </header>
-
-      <div className={`fixed inset-0 z-40 bg-white pt-14 transition-opacity duration-300 ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}>
-        <div className="mx-auto flex h-full max-w-[calc(1160px+2rem)] flex-col justify-between px-4 pb-8 pt-10 md:max-w-[calc(1160px+4rem)] md:px-8">
-          <nav aria-label="Menu principal">
-            {nav.map((n, i) => (
-              <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="flex items-baseline gap-4 border-b border-line py-3 text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-tight tracking-[-0.04em] hover:text-clay">
-                <span className="text-[0.85rem] font-medium text-gray">{String(i + 1).padStart(2, "0")}</span>
-                {n.label}
-              </a>
+    <header className="fixed inset-x-0 top-3 z-50 px-4">
+      <div className="glass mx-auto flex max-w-[1160px] items-center justify-between gap-4 !rounded-full py-2 pl-4 pr-2">
+        <a href="#inicio" aria-label={studio.name}>
+          <Logo />
+        </a>
+        <nav className="hidden lg:block" aria-label="Menu principal">
+          <ul className="flex items-center gap-7 text-[0.82rem] font-medium">
+            {nav.map((n) => (
+              <li key={n.href}>
+                <a href={n.href} className="transition-colors hover:text-bronze">
+                  {n.label}
+                </a>
+              </li>
             ))}
-          </nav>
-          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="cta mt-8 w-fit">
-            <span className="bg-night text-white">Solicitar orçamento</span>
-            <span className="bg-night text-white">→</span>
-          </a>
-        </div>
+          </ul>
+        </nav>
+        <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn-bronze hidden !py-2.5 lg:inline-flex">
+          Solicitar orçamento ↗
+        </a>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          className="relative h-10 w-10 rounded-full bg-ink lg:hidden"
+        >
+          <span className={`absolute left-3 right-3 h-px bg-white transition-transform ${open ? "top-1/2 rotate-45" : "top-[calc(50%-3px)]"}`} />
+          <span className={`absolute left-3 right-3 h-px bg-white transition-transform ${open ? "top-1/2 -rotate-45" : "top-[calc(50%+3px)]"}`} />
+        </button>
       </div>
-    </>
+      {open && (
+        <nav className="glass mx-auto mt-2 max-w-[1160px] p-3 lg:hidden" aria-label="Menu principal">
+          {nav.map((n) => (
+            <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 font-medium hover:bg-sand">
+              {n.label}
+            </a>
+          ))}
+          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn-bronze mt-2 w-full justify-center">
+            Solicitar orçamento ↗
+          </a>
+        </nav>
+      )}
+    </header>
   );
 }

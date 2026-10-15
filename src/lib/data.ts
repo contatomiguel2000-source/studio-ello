@@ -22,11 +22,12 @@ export function whatsappLink(msg = "Olá! Vim pelo site do Studio Ello e gostari
 
 export const nav = [
   { label: "Sobre", href: "#sobre" },
-  { label: "Projetos", href: "#projetos" },
+  { label: "Ambientes", href: "#ambientes" },
   { label: "Serviços", href: "#servicos" },
   { label: "Processo", href: "#processo" },
   { label: "Clientes", href: "#clientes" },
   { label: "Dúvidas", href: "#duvidas" },
+  { label: "Contato", href: "#contato" },
 ];
 
 export const heroServices = ["Projetos residenciais", "Projetos comerciais", "Consultórios e clínicas", "Fachadas"];
@@ -52,6 +53,16 @@ export const rooms = [
   "Studio de beleza",
   "Consultório",
   "Fachada",
+];
+
+// Cartões de ambientes (seção no estilo "amenities" da referência)
+export const roomCards = [
+  { title: "Salas de estar", text: "Aconchego, iluminação e marcenaria sob medida.", image: "/img/sala-tv.webp" },
+  { title: "Cozinhas", text: "Funcionais, bonitas e prontas para receber.", image: "/img/cozinha-ilha.webp" },
+  { title: "Dormitórios", text: "Do quarto do casal ao quarto das crianças.", image: "/img/quarto-casal.webp" },
+  { title: "Áreas gourmet", text: "Espaços para reunir quem você ama.", image: "/img/area-gourmet.webp" },
+  { title: "Lojas e showrooms", text: "Ambientes que vendem pela sua marca.", image: "/img/joalheria-unity.webp" },
+  { title: "Studios e consultórios", text: "Beleza, saúde e bem-estar com identidade.", image: "/img/salao-beleza.webp" },
 ];
 
 export const projects = [
