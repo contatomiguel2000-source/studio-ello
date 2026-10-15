@@ -12,7 +12,7 @@ export function Logo({ light = false }: { light?: boolean }) {
       </svg>
       <span className="leading-none">
         <span className={`block font-serif text-[1.35rem] tracking-[0.12em] ${light ? "text-white" : "text-ink"}`}>STUDIO ELLO</span>
-        <span className="mt-0.5 block text-[0.55rem] font-medium tracking-[0.2em] text-bronze">PROJETOS E INTERIORES</span>
+        <span className="mt-1 block text-[0.68rem] font-semibold tracking-[0.18em] text-bronze">PROJETOS E INTERIORES</span>
       </span>
     </span>
   );

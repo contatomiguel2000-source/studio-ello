@@ -27,7 +27,7 @@ export function ServicesTabs() {
               }`}
             >
               <span>
-                <span className={`mr-3 font-serif text-[1.1rem] ${on ? "text-bronze" : "text-bronze"}`}>{String(i + 1).padStart(2, "0")}</span>
+                <span className={`mr-3 font-serif text-[1.1rem] ${on ? "text-bronze-light" : "text-bronze"}`}>{String(i + 1).padStart(2, "0")}</span>
                 {sv.title}
               </span>
               <span aria-hidden>→</span>
@@ -54,6 +54,7 @@ export function ServicesTabs() {
             <Image
               key={sv.title}
               src={asset(sv.image)}
+              quality={90}
               alt={sv.title}
               fill
               sizes="(min-width: 1024px) 340px, 100vw"

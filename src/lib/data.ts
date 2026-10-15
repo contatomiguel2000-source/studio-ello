@@ -23,8 +23,9 @@ export function whatsappLink(msg = "Olá! Vim pelo site do Studio Ello e gostari
 export const nav = [
   { label: "Sobre", href: "#sobre" },
   { label: "Ambientes", href: "#ambientes" },
+  { label: "Tours 3D", href: "#tours" },
   { label: "Serviços", href: "#servicos" },
-  { label: "Processo", href: "#processo" },
+  { label: "Galeria", href: "#galeria" },
   { label: "Clientes", href: "#clientes" },
   { label: "Dúvidas", href: "#duvidas" },
   { label: "Contato", href: "#contato" },
@@ -169,4 +170,54 @@ export const faqs = [
     q: "Como peço um orçamento?",
     a: "É só chamar no WhatsApp contando qual ambiente você quer transformar. A equipe responde com o orçamento.",
   },
+];
+
+// Galeria: slides extras dos carrosséis do Instagram (imagens 3D em 1440px) e plantas técnicas
+export const galleryTags = ["Todos", "Sala", "Cozinha", "Quarto", "Comercial", "Detalhamento"] as const;
+
+export const gallery: { src: string; tag: (typeof galleryTags)[number]; alt: string; w: number; h: number }[] = [
+  { src: "/img/g-cozinha-integrada.webp", tag: "Cozinha", alt: "Cozinha, projeto do Studio Ello", w: 1440, h: 1136 },
+  { src: "/img/g-sala-sofa-curvo.webp", tag: "Sala", alt: "Sala, projeto do Studio Ello", w: 1440, h: 881 },
+  { src: "/img/g-sala-verde-2.webp", tag: "Sala", alt: "Sala, projeto do Studio Ello", w: 1440, h: 1920 },
+  { src: "/img/g-quarto-casal-2.webp", tag: "Quarto", alt: "Dormitório, projeto do Studio Ello", w: 1440, h: 1117 },
+  { src: "/img/g-cozinha-2.webp", tag: "Cozinha", alt: "Cozinha, projeto do Studio Ello", w: 1440, h: 800 },
+  { src: "/img/g-jantar-pergolado.webp", tag: "Sala", alt: "Sala, projeto do Studio Ello", w: 1440, h: 1419 },
+  { src: "/img/g-quarto-madeira.webp", tag: "Quarto", alt: "Dormitório, projeto do Studio Ello", w: 1440, h: 1080 },
+  { src: "/img/g-cozinha-3.webp", tag: "Cozinha", alt: "Cozinha, projeto do Studio Ello", w: 1440, h: 1080 },
+  { src: "/img/g-quarto-meninas.webp", tag: "Quarto", alt: "Dormitório, projeto do Studio Ello", w: 1440, h: 1692 },
+  { src: "/img/g-sala-tv-2.webp", tag: "Sala", alt: "Sala, projeto do Studio Ello", w: 1440, h: 923 },
+  { src: "/img/g-sala-estar.webp", tag: "Sala", alt: "Sala, projeto do Studio Ello", w: 1440, h: 1921 },
+  { src: "/img/g-quarto-rosa.webp", tag: "Quarto", alt: "Dormitório, projeto do Studio Ello", w: 1440, h: 1152 },
+  { src: "/img/g-sala-3.webp", tag: "Sala", alt: "Sala, projeto do Studio Ello", w: 1440, h: 901 },
+  { src: "/img/g-jantar-2.webp", tag: "Sala", alt: "Sala, projeto do Studio Ello", w: 1438, h: 1151 },
+  { src: "/img/g-adega.webp", tag: "Cozinha", alt: "Cozinha, projeto do Studio Ello", w: 1438, h: 1278 },
+  { src: "/img/g-quarto-4.webp", tag: "Quarto", alt: "Dormitório, projeto do Studio Ello", w: 1440, h: 1139 },
+  { src: "/img/g-quarto-infantil.webp", tag: "Quarto", alt: "Dormitório, projeto do Studio Ello", w: 1440, h: 1690 },
+  { src: "/img/g-showroom.webp", tag: "Comercial", alt: "Projeto comercial, projeto do Studio Ello", w: 1440, h: 1440 },
+  { src: "/img/g-recepcao.webp", tag: "Comercial", alt: "Projeto comercial, projeto do Studio Ello", w: 1440, h: 893 },
+  { src: "/img/g-loja-verde.webp", tag: "Comercial", alt: "Projeto comercial, projeto do Studio Ello", w: 1440, h: 1087 },
+  { src: "/img/g-escritorio-2.webp", tag: "Comercial", alt: "Projeto comercial, projeto do Studio Ello", w: 1440, h: 1692 },
+  { src: "/img/g-consultorio-2.webp", tag: "Comercial", alt: "Projeto comercial, projeto do Studio Ello", w: 1440, h: 1692 },
+  { src: "/img/g-estetica-2.webp", tag: "Comercial", alt: "Projeto comercial, projeto do Studio Ello", w: 1440, h: 1152 },
+  { src: "/img/g-joalheria-2.webp", tag: "Comercial", alt: "Projeto comercial, projeto do Studio Ello", w: 1439, h: 1150 },
+  { src: "/img/g-pilates-2.webp", tag: "Comercial", alt: "Projeto comercial, projeto do Studio Ello", w: 1440, h: 1692 },
+  { src: "/img/g-cafeteria.webp", tag: "Comercial", alt: "Projeto comercial, projeto do Studio Ello", w: 1440, h: 960 },
+  { src: "/img/g-planta-1.webp", tag: "Detalhamento", alt: "Planta técnica com detalhamento, projeto do Studio Ello", w: 1440, h: 1012 },
+  { src: "/img/g-planta-2.webp", tag: "Detalhamento", alt: "Planta técnica com detalhamento, projeto do Studio Ello", w: 1440, h: 1043 },
+  { src: "/img/g-planta-3.webp", tag: "Detalhamento", alt: "Planta técnica com detalhamento, projeto do Studio Ello", w: 1440, h: 1280 },
+];
+
+// Vídeos de tour 3D (posts do Instagram em 1120px, sem áudio)
+export const tours = [
+  { slug: "sala", title: "Sala integrada ao jardim", type: "Residencial" },
+  { slug: "cafeteria", title: "Cafeteria", type: "Comercial" },
+  { slug: "tortaria", title: "Tortaria", type: "Comercial" },
+  { slug: "clinica-veterinaria", title: "Clínica veterinária", type: "Comercial" },
+  { slug: "projeto", title: "Mercado e café", type: "Comercial" },
+  { slug: "sanitario-feminino", title: "Sanitário feminino", type: "Comercial" },
+  { slug: "dormitorio-rede", title: "Dormitório com rede", type: "Residencial" },
+  { slug: "quarto-bebe", title: "Quarto do bebê", type: "Residencial" },
+  { slug: "dormitorio-cecilia", title: "Dormitório da Cecília", type: "Residencial" },
+  { slug: "consultorio", title: "Consultório de estética", type: "Comercial" },
+  { slug: "dormitorio-treliche", title: "Dormitório com treliche", type: "Residencial" },
 ];

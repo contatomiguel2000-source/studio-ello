@@ -3,6 +3,8 @@ import { Header, Logo } from "@/components/Header";
 import { Reveal } from "@/components/Reveal";
 import { ServicesTabs } from "@/components/ServicesTabs";
 import { ContactForm } from "@/components/ContactForm";
+import { Gallery } from "@/components/Gallery";
+import { Tours } from "@/components/Tours";
 import { IconInstagram, IconPhone, IconPin, IconStar, IconWhatsapp } from "@/components/Icons";
 import { faqs, nav, roomCards, rooms, steps, studio, testimonials, whatsappLink } from "@/lib/data";
 import { asset } from "@/lib/base-path";
@@ -43,7 +45,7 @@ export default function Home() {
         {/* Hero */}
         <section id="inicio" className="relative overflow-hidden pb-14 pt-28 md:min-h-[100svh] md:pb-10 md:pt-0">
           <div className="absolute inset-y-0 right-0 hidden w-[68%] md:block">
-            <Image src={asset("/img/hero-sala.webp")} alt="Sala de estar com sofá orgânico, projeto do Studio Ello" fill priority unoptimized sizes="68vw" className="object-cover" />
+            <Image src={asset("/img/hero-sala.webp")} alt="Sala de estar com sofá orgânico, projeto do Studio Ello" quality={90} fill priority unoptimized sizes="68vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-cream from-0% via-cream/35 via-30% to-transparent to-60%" />
             <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-cream to-transparent" />
           </div>
@@ -66,7 +68,7 @@ export default function Home() {
 
             {/* imagem no celular */}
             <div className="relative mt-10 aspect-[16/10] overflow-hidden rounded-2xl md:hidden">
-              <Image src={asset("/img/hero-sala.webp")} alt="" fill unoptimized sizes="100vw" className="object-cover" />
+              <Image src={asset("/img/hero-sala.webp")} alt="" quality={90} fill unoptimized sizes="100vw" className="object-cover" />
             </div>
 
             <Reveal delay={150} className="mt-8 grid max-w-[36rem] grid-cols-3 gap-3 md:mt-12">
@@ -77,8 +79,8 @@ export default function Home() {
               ].map((c) => (
                 <div key={c.l} className="glass p-4">
                   <p className="font-serif text-[clamp(1.6rem,3vw,2.1rem)] leading-none">{c.v}</p>
-                  <p className="mt-2 text-[0.75rem] font-medium">{c.l}</p>
-                  <p className="mt-2 border-t border-line pt-2 text-[0.7rem] text-muted">{c.s}</p>
+                  <p className="mt-2 text-[0.82rem] font-medium">{c.l}</p>
+                  <p className="mt-2 border-t border-line pt-2 text-[0.8rem] text-muted">{c.s}</p>
                 </div>
               ))}
             </Reveal>
@@ -87,16 +89,16 @@ export default function Home() {
               <div className="flex -space-x-2">
                 {["/img/quarto-casal.webp", "/img/cozinha-ilha.webp", "/img/showroom-flora.webp"].map((src) => (
                   <span key={src} className="relative h-8 w-8 overflow-hidden rounded-full border-2 border-white">
-                    <Image src={asset(src)} alt="" fill sizes="32px" className="object-cover" />
+                    <Image src={asset(src)} alt="" quality={90} fill sizes="32px" className="object-cover" />
                   </span>
                 ))}
                 <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-bronze text-[0.6rem] font-semibold text-white">5k+</span>
               </div>
               <p className="mt-3 font-serif text-[1.6rem] leading-none">5 mil+</p>
-              <p className="mt-1 text-[0.75rem] text-muted">Projetos entregues</p>
+              <p className="mt-1 text-[0.82rem] text-muted">Projetos entregues</p>
               <div className="mt-3 flex items-center gap-2 border-t border-line pt-3">
                 <Stars className="h-3 w-3" />
-                <span className="text-[0.7rem] text-muted">{studio.rating} no Google</span>
+                <span className="text-[0.8rem] text-muted">{studio.rating} no Google</span>
               </div>
             </Reveal>
           </div>
@@ -117,14 +119,14 @@ export default function Home() {
               <div className="mt-8 grid grid-cols-2 gap-3">
                 {["/img/cozinha.webp", "/img/espaco-gourmet.webp"].map((src) => (
                   <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-xl">
-                    <Image src={asset(src)} alt="" fill sizes="(min-width: 768px) 260px, 50vw" className="object-cover" />
+                    <Image src={asset(src)} alt="" quality={90} fill sizes="(min-width: 768px) 260px, 50vw" className="object-cover" />
                   </div>
                 ))}
               </div>
             </Reveal>
             <Reveal delay={120} className="relative">
               <div className="relative aspect-[4/4.4] overflow-hidden rounded-2xl">
-                <Image src={asset("/img/sala-tv.webp")} alt="Sala de estar e TV, projeto do Studio Ello" fill sizes="(min-width: 768px) 560px, 100vw" className="object-cover" />
+                <Image src={asset("/img/sala-tv.webp")} alt="Sala de estar e TV, projeto do Studio Ello" quality={90} fill sizes="(min-width: 768px) 560px, 100vw" className="object-cover" />
               </div>
               <div className="relative z-10 -mt-12 grid grid-cols-3 gap-3 px-3 md:px-6">
                 {[
@@ -134,7 +136,7 @@ export default function Home() {
                 ].map(([a, b]) => (
                   <div key={a} className="glass p-3 text-center">
                     <p className="font-serif text-[1.3rem] leading-none">{a}</p>
-                    <p className="mt-1 text-[0.7rem] text-muted">{b}</p>
+                    <p className="mt-1 text-[0.8rem] text-muted">{b}</p>
                   </div>
                 ))}
               </div>
@@ -150,20 +152,20 @@ export default function Home() {
               <h2 className="t-h2 mt-5">Por que escolher o Studio Ello?</h2>
               <div className="mt-8 grid grid-cols-[1.2fr_1fr] gap-3">
                 <div className="relative row-span-2 aspect-[3/4] overflow-hidden rounded-xl">
-                  <Image src={asset("/img/emily-caroline.webp")} alt="Emily Caroline, CEO do Studio Ello" fill unoptimized sizes="(min-width: 768px) 300px, 55vw" className="object-cover" />
+                  <Image src={asset("/img/emily-caroline.webp")} alt="Emily Caroline, CEO do Studio Ello" quality={90} fill unoptimized sizes="(min-width: 768px) 300px, 55vw" className="object-cover" />
                 </div>
                 <div className="relative overflow-hidden rounded-xl">
-                  <Image src={asset("/img/sala-verde.webp")} alt="" fill sizes="(min-width: 768px) 240px, 45vw" className="object-cover" />
+                  <Image src={asset("/img/sala-verde.webp")} alt="" quality={90} fill sizes="(min-width: 768px) 240px, 45vw" className="object-cover" />
                 </div>
                 <div className="relative overflow-hidden rounded-xl">
-                  <Image src={asset("/img/quarto-soccer.webp")} alt="" fill sizes="(min-width: 768px) 240px, 45vw" className="object-cover" />
+                  <Image src={asset("/img/quarto-soccer.webp")} alt="" quality={90} fill sizes="(min-width: 768px) 240px, 45vw" className="object-cover" />
                 </div>
               </div>
               <figure className="glass relative z-10 -mt-16 ml-6 max-w-[24rem] p-5 md:ml-10">
                 <blockquote className="font-serif text-[1.15rem] leading-snug">
                   “Entendo que o lar é o nosso refúgio e que o design de interiores precisa ser acessível a todos.”
                 </blockquote>
-                <figcaption className="mt-3 text-[0.78rem] text-muted">
+                <figcaption className="mt-3 text-[0.85rem] text-muted">
                   <strong className="font-medium text-ink">Emily Caroline</strong> · CEO do Studio Ello, escritora e palestrante
                 </figcaption>
               </figure>
@@ -193,10 +195,10 @@ export default function Home() {
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {roomCards.map((r, i) => (
                 <Reveal key={r.title} delay={(i % 3) * 90} className="group relative aspect-[4/3.4] overflow-hidden rounded-2xl">
-                  <Image src={asset(r.image)} alt={r.title} fill sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <Image src={asset(r.image)} alt={r.title} quality={90} fill sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   <div className="glass absolute inset-x-3 bottom-3 p-4">
                     <p className="text-[0.95rem] font-medium">{r.title}</p>
-                    <p className="text-[0.78rem] text-muted">{r.text}</p>
+                    <p className="text-[0.85rem] text-muted">{r.text}</p>
                   </div>
                 </Reveal>
               ))}
@@ -210,6 +212,24 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Tours em vídeo */}
+        <section id="tours" className="bg-sand py-20 md:py-28">
+          <div className={wrap}>
+            <div className="grid gap-6 md:grid-cols-2 md:items-end">
+              <Reveal>
+                <span className="eyebrow !text-bronze-dark">Tours em 3D</span>
+                <h2 className="t-h2 mt-5">Passeie pelos projetos antes da obra</h2>
+              </Reveal>
+              <Reveal delay={100}>
+                <p className="leading-relaxed text-muted">Cada projeto ganha imagens e vídeos 3D realistas. Assim você vê o ambiente pronto, do jeito que ele vai ficar, antes de começar a obra.</p>
+              </Reveal>
+            </div>
+            <Reveal delay={150} className="mt-10">
+              <Tours />
             </Reveal>
           </div>
         </section>
@@ -232,6 +252,24 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Galeria */}
+        <section id="galeria" className="py-20 md:py-28">
+          <div className={wrap}>
+            <div className="grid gap-6 md:grid-cols-2 md:items-end">
+              <Reveal>
+                <span className="eyebrow">Galeria</span>
+                <h2 className="t-h2 mt-5">Mais projetos do Studio Ello</h2>
+              </Reveal>
+              <Reveal delay={100}>
+                <p className="leading-relaxed text-muted">Salas, cozinhas, quartos e projetos comerciais. Em &ldquo;Detalhamento&rdquo;, veja as plantas técnicas que acompanham cada projeto.</p>
+              </Reveal>
+            </div>
+            <Reveal delay={150} className="mt-10">
+              <Gallery />
+            </Reveal>
+          </div>
+        </section>
+
         {/* Clientes */}
         <section id="clientes" className="py-20 md:py-28">
           <div className={wrap}>
@@ -245,13 +283,13 @@ export default function Home() {
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {testimonials.map((t, i) => (
                 <Reveal key={t.name} delay={(i % 3) * 90} className="flex flex-col rounded-2xl bg-white p-6 shadow-[0_10px_40px_rgba(18,24,32,0.05)]">
-                  <span className="font-serif text-[2.6rem] leading-none text-bronze/50" aria-hidden>“</span>
+                  <span className="font-serif text-[2.6rem] leading-none text-bronze" aria-hidden>“</span>
                   <p className="mt-2 flex-1 text-[0.92rem] leading-relaxed text-muted">{t.text}</p>
                   <div className="mt-6 flex items-center gap-3 border-t border-line pt-4">
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sand font-serif text-lg text-bronze-dark">{t.name.charAt(0)}</span>
                     <span>
                       <span className="block text-[0.88rem] font-medium">{t.name}</span>
-                      <span className="block text-[0.75rem] text-muted">{t.tag} · Google Maps</span>
+                      <span className="block text-[0.82rem] text-muted">{t.tag} · Google Maps</span>
                     </span>
                   </div>
                 </Reveal>
@@ -280,7 +318,7 @@ export default function Home() {
               </a>
             </Reveal>
             <Reveal delay={120} className="relative min-h-[18rem] overflow-hidden rounded-2xl">
-              <Image src={asset("/img/home-office.webp")} alt="Home office projetado pelo Studio Ello" fill sizes="(min-width: 768px) 560px, 100vw" className="object-cover" />
+              <Image src={asset("/img/home-office.webp")} alt="Home office projetado pelo Studio Ello" quality={90} fill sizes="(min-width: 768px) 560px, 100vw" className="object-cover" />
             </Reveal>
           </div>
           <div className={`${wrap} mt-8`}>
@@ -333,25 +371,25 @@ export default function Home() {
                 <li>
                   <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-bronze">
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-bronze"><IconWhatsapp className="h-4 w-4" /></span>
-                    <span><span className="block text-[0.72rem] text-muted">WhatsApp</span>{studio.phone}</span>
+                    <span><span className="block text-[0.8rem] text-muted">WhatsApp</span>{studio.phone}</span>
                   </a>
                 </li>
                 <li>
                   <a href={studio.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-bronze">
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-bronze"><IconInstagram className="h-4 w-4" /></span>
-                    <span><span className="block text-[0.72rem] text-muted">Instagram</span>{studio.instagramHandle}</span>
+                    <span><span className="block text-[0.8rem] text-muted">Instagram</span>{studio.instagramHandle}</span>
                   </a>
                 </li>
                 <li>
                   <a href={studio.phoneHref} className="flex items-center gap-3 hover:text-bronze">
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-bronze"><IconPhone className="h-4 w-4" /></span>
-                    <span><span className="block text-[0.72rem] text-muted">Ligar</span>{studio.phone}</span>
+                    <span><span className="block text-[0.8rem] text-muted">Ligar</span>{studio.phone}</span>
                   </a>
                 </li>
               </ul>
             </Reveal>
             <Reveal delay={120} className="relative overflow-hidden rounded-2xl p-4 pt-40 sm:p-6 sm:pt-48">
-              <Image src={asset("/img/fachada-casa.webp")} alt="" fill sizes="(min-width: 768px) 660px, 100vw" className="object-cover" aria-hidden />
+              <Image src={asset("/img/fachada-casa.webp")} alt="" quality={90} fill sizes="(min-width: 768px) 660px, 100vw" className="object-cover" aria-hidden />
               <div className="relative">
                 <ContactForm />
               </div>
@@ -396,7 +434,7 @@ export default function Home() {
           </div>
         </div>
         <div className={`${wrap} mt-12`}>
-          <p className="border-t border-line pt-6 text-[0.75rem] text-muted">© {new Date().getFullYear()} {studio.name}. Todos os direitos reservados.</p>
+          <p className="border-t border-line pt-6 text-[0.82rem] text-muted">© {new Date().getFullYear()} {studio.name}. Todos os direitos reservados.</p>
         </div>
       </footer>
 
