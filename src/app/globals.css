@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* Paleta do layout de referência (monocromática), com o terracota da identidade do Studio Ello como destaque */
+@theme inline {
+  --color-paper: #ffffff;
+  --color-mist: #f6f6f6;
+  --color-line: #e3e3e3;
+  --color-gray: #757575;
+  --color-ash: #bfbfbf;
+  --color-night: #121212;
+  --color-coal: #0a0a0a;
+  --color-clay: #a4593a; /* terracota */
+  --color-sand: #efe6dd;
+  --font-sans: var(--font-inter-tight), "Inter Tight", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-night);
+  font-family: var(--font-inter-tight), "Inter Tight", system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+
+section[id] {
+  scroll-margin-top: 4rem;
+}
+
+.t-mega {
+  font-size: clamp(3.6rem, 12vw, 10.5rem);
+  line-height: 0.85;
+  font-weight: 600;
+  letter-spacing: -0.065em;
+}
+.t-h1 {
+  font-size: clamp(2.25rem, 4.4vw, 3.75rem);
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+.t-h2 {
+  font-size: clamp(2rem, 3.6vw, 3.1rem);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+.t-h3 {
+  font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+@layer components {
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+  .label::before {
+    content: "";
+    width: 0.35rem;
+    height: 0.35rem;
+    background: currentColor;
+  }
+  /* Botão no estilo da referência: caixa de texto + caixa da seta */
+  .cta {
+    display: inline-flex;
+    align-items: stretch;
+    gap: 2px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .cta > span {
+    display: flex;
+    align-items: center;
+    padding: 0.85rem 1.1rem;
+    transition: background 0.2s ease;
+  }
+  .cta > span:first-child {
+    min-width: 11rem;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee {
+    animation: none;
+  }
+}
