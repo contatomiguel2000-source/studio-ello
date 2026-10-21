@@ -22,34 +22,31 @@ export function ServicesTabs() {
               type="button"
               aria-selected={on}
               onClick={() => setActive(i)}
-              className={`flex items-center justify-between rounded-xl px-5 py-4 text-left text-[0.92rem] transition-colors ${
-                on ? "bg-ink text-white" : "bg-white/60 hover:bg-white"
+              className={`flex items-center justify-between border-l-2 px-5 py-4 text-left text-[0.92rem] transition-colors ${
+                on ? "border-bronze bg-white font-medium" : "border-transparent text-muted hover:text-ink"
               }`}
             >
-              <span>
-                <span className={`mr-3 font-serif text-[1.1rem] ${on ? "text-bronze-light" : "text-bronze"}`}>{String(i + 1).padStart(2, "0")}</span>
-                {sv.title}
-              </span>
-              <span aria-hidden>→</span>
+              <span>{sv.title}</span>
+              
             </button>
           );
         })}
       </div>
 
-      <div className="glass grid gap-6 p-5 md:grid-cols-2 md:p-6" role="tabpanel">
+      <div className="grid gap-6 bg-white p-5 md:grid-cols-2 md:p-6" role="tabpanel">
         <div className="flex flex-col">
           <h3 className="t-h3">{s.title}</h3>
           <p className="mt-3 text-[0.92rem] leading-relaxed text-muted">{s.text}</p>
           <ul className="mt-5 space-y-2.5 text-[0.88rem]">
             {s.items.map((it) => (
               <li key={it} className="flex items-center gap-3 border-b border-line pb-2.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-bronze" />
+                <span className="h-1.5 w-1.5 bg-bronze" />
                 {it}
               </li>
             ))}
           </ul>
         </div>
-        <div className="relative min-h-[16rem] overflow-hidden rounded-xl bg-sand">
+        <div className="relative min-h-[16rem] overflow-hidden bg-sand">
           {services.map((sv, i) => (
             <Image
               key={sv.title}

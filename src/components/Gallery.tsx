@@ -31,7 +31,7 @@ export function Gallery() {
             role="tab"
             aria-selected={tag === t}
             onClick={() => setTag(t)}
-            className={`rounded-full px-4 py-2 text-[0.85rem] font-medium transition-colors ${
+            className={`px-3 py-1.5 text-[0.85rem] font-medium transition-colors ${
               tag === t ? "bg-ink text-white" : "border border-line bg-white text-ink hover:border-bronze"
             }`}
           >
@@ -46,7 +46,7 @@ export function Gallery() {
             key={g.src}
             type="button"
             onClick={() => setZoom(i)}
-            className="group mb-3 block w-full overflow-hidden rounded-xl bg-sand md:mb-4"
+            className="group mb-3 block w-full overflow-hidden bg-sand md:mb-4"
             aria-label={`Ampliar: ${g.alt}`}
           >
             <Image

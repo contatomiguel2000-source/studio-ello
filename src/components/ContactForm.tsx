@@ -25,13 +25,13 @@ export function ContactForm() {
   };
 
   const field =
-    "w-full rounded-lg border border-line bg-white/80 px-3.5 py-3 text-[0.88rem] text-ink placeholder:text-muted focus:border-bronze focus:outline-none";
+    "w-full border border-line bg-cream px-3.5 py-3 text-[0.88rem] text-ink placeholder:text-muted focus:border-bronze focus:outline-none";
 
   return (
-    <form onSubmit={submit} className="glass grid gap-3 p-5 sm:grid-cols-2 md:p-6">
+    <form onSubmit={submit} className="grid gap-3 bg-white p-5 sm:grid-cols-2 md:p-7">
       <div className="sm:col-span-2">
-        <p className="t-h3">Envie uma mensagem</p>
-        <p className="mt-1 text-[0.85rem] text-muted">Preencha e continue a conversa pelo WhatsApp.</p>
+        <p className="t-h3">Conta pra gente o que você quer mudar</p>
+        <p className="mt-1 text-[0.85rem] text-muted">Ao enviar, a conversa continua no WhatsApp.</p>
       </div>
       <input required value={f.name} onChange={set("name")} placeholder="Nome *" aria-label="Nome" className={field} />
       <input type="tel" value={f.phone} onChange={set("phone")} placeholder="Telefone" aria-label="Telefone" className={field} />
@@ -46,12 +46,12 @@ export function ContactForm() {
         value={f.msg}
         onChange={set("msg")}
         rows={4}
-        placeholder="Conte suas ideias e necessidades…"
+        placeholder="Ex.: quero mudar a cozinha, ela tem 3 x 4 m"
         aria-label="Mensagem"
         className={`${field} resize-none sm:col-span-2`}
       />
       <button type="submit" className="btn btn-dark justify-center sm:col-span-2">
-        Enviar pelo WhatsApp ↗
+        Enviar
       </button>
     </form>
   );

@@ -21,22 +21,12 @@ export function whatsappLink(msg = "Olá! Vim pelo site do Studio Ello e gostari
 }
 
 export const nav = [
-  { label: "Sobre", href: "#sobre" },
-  { label: "Ambientes", href: "#ambientes" },
-  { label: "Tours 3D", href: "#tours" },
+  { label: "Projetos", href: "#projetos" },
+  { label: "Quem somos", href: "#quem-somos" },
   { label: "Serviços", href: "#servicos" },
-  { label: "Galeria", href: "#galeria" },
-  { label: "Clientes", href: "#clientes" },
-  { label: "Dúvidas", href: "#duvidas" },
+  { label: "Como funciona", href: "#como-funciona" },
+  { label: "Depoimentos", href: "#depoimentos" },
   { label: "Contato", href: "#contato" },
-];
-
-export const heroServices = ["Projetos residenciais", "Projetos comerciais", "Consultórios e clínicas", "Fachadas"];
-
-export const stats = [
-  { value: "5 mil+", label: "Projetos entregues" },
-  { value: "5,0", label: "Nota no Google (47 avaliações)" },
-  { value: "100%", label: "Online para todo o Brasil" },
 ];
 
 // Categorias dos destaques do Instagram
@@ -56,14 +46,56 @@ export const rooms = [
   "Fachada",
 ];
 
-// Cartões de ambientes (seção no estilo "amenities" da referência)
-export const roomCards = [
-  { title: "Salas de estar", text: "Aconchego, iluminação e marcenaria sob medida.", image: "/img/sala-tv.webp" },
-  { title: "Cozinhas", text: "Funcionais, bonitas e prontas para receber.", image: "/img/cozinha-ilha.webp" },
-  { title: "Dormitórios", text: "Do quarto do casal ao quarto das crianças.", image: "/img/quarto-casal.webp" },
-  { title: "Áreas gourmet", text: "Espaços para reunir quem você ama.", image: "/img/area-gourmet.webp" },
-  { title: "Lojas e showrooms", text: "Ambientes que vendem pela sua marca.", image: "/img/joalheria-unity.webp" },
-  { title: "Studios e consultórios", text: "Beleza, saúde e bem-estar com identidade.", image: "/img/salao-beleza.webp" },
+// Projetos reais do Instagram, com o comentário que o próprio studio escreveu no post
+export const featured = [
+  {
+    title: "Tortaria da Léia",
+    kind: "Comercial",
+    video: "tortaria",
+    note: "Eu estou muito apaixonada na tortaria da Léia, que ainda por cima é verde. Ou seja, ganhou meu coração duas vezes.",
+  },
+  {
+    title: "Clínica veterinária Pata Amar",
+    kind: "Comercial",
+    video: "clinica-veterinaria",
+    note: "É muito amor por nossos pets: uma clínica veterinária linda, equipada e preparada para receber nossos amiguinhos.",
+  },
+  {
+    title: "Dormitório da Cecília",
+    kind: "Residencial",
+    video: "dormitorio-cecilia",
+    note: "Olha esse guarda-roupa! É uma marcenaria com valor mais elevado, por conta da riqueza de detalhes, mas vale super a pena.",
+  },
+  {
+    title: "Joalheria Unity",
+    kind: "Comercial",
+    image: "/img/joalheria-unity.webp",
+    note: "Ficou muito linda, cada detalhe de acordo com o gosto do cliente.",
+  },
+  {
+    title: "Lavanderia",
+    kind: "Residencial",
+    image: "/img/lavanderia.webp",
+    note: "A cliente queria apenas deixar o ambiente organizado e com bom acabamento, usando o que ela já tinha no espaço.",
+  },
+  {
+    title: "Sala com vista para o jardim",
+    kind: "Residencial",
+    video: "sala",
+    note: "Eu não sei explicar a atmosfera dessa sala!",
+  },
+  {
+    title: "Showroom de fábrica",
+    kind: "Comercial · Fachada",
+    image: "/img/showroom-flora.webp",
+    note: "Showroom de fábrica com uma fachada lindíssima.",
+  },
+  {
+    title: "Dormitório com rede",
+    kind: "Residencial",
+    video: "dormitorio-rede",
+    note: "Com essa rede à disposição, é simplesmente tudo.",
+  },
 ];
 
 export const projects = [
@@ -79,97 +111,82 @@ export const projects = [
 
 export const services = [
   {
-    title: "Projeto Residencial",
-    text: "Salas, cozinhas, dormitórios, banheiros, áreas gourmet e de serviço. Projetos pensados para o seu estilo e para a rotina de quem vive ali.",
-    items: ["Imagens 3D realistas", "Marcenaria planejada", "Projeto de iluminação", "Detalhamentos para execução", "Reaproveitamento do que você já tem"],
+    title: "Casa e apartamento",
+    text: "Sala, cozinha, quartos, banheiro, área gourmet, lavanderia. Dá para fazer um ambiente só ou a casa inteira, e a gente aproveita o que você já tem quando faz sentido.",
+    items: ["Imagens 3D do ambiente pronto", "Marcenaria planejada", "Iluminação", "Detalhamento para a obra"],
     image: "/img/sala-integrada.webp",
   },
   {
-    title: "Projeto Comercial",
-    text: "Lojas, showrooms, escritórios, cafeterias e studios de beleza. Ambientes estratégicos, funcionais e marcantes, que fortalecem a identidade da sua marca.",
-    items: ["Layout inteligente e funcional", "Imagens 3D realistas", "Identidade da marca no espaço", "Detalhamentos técnicos para a obra"],
+    title: "Lojas e escritórios",
+    text: "Lojas, showrooms, cafeterias, studios de beleza e escritórios. O layout é pensado para o seu cliente circular bem e para o espaço ter a cara da sua marca.",
+    items: ["Layout e circulação", "Imagens 3D", "Marca aplicada no espaço", "Detalhamento técnico"],
     image: "/img/joalheria-unity.webp",
   },
   {
-    title: "Consultórios e Clínicas",
-    text: "Consultórios odontológicos, salas de psicologia, clínicas e salas de atendimento infantil, com uma equipe que lida todos os dias com as regras desse segmento.",
-    items: ["Projeto dentro das normas", "Fluxo pensado para o atendimento", "Conforto para pacientes e equipe"],
+    title: "Consultórios e clínicas",
+    text: "Consultórios odontológicos, salas de psicologia e clínicas. Fazemos isso todo dia, então o projeto já sai seguindo as regras do segmento.",
+    items: ["Projeto dentro das normas", "Fluxo do atendimento", "Conforto para paciente e equipe"],
     image: "/img/consultorio.webp",
   },
   {
     title: "Fachadas",
-    text: "Fachadas residenciais e comerciais que valorizam o imóvel e convidam a entrar, do primeiro esboço à imagem final.",
-    items: ["Fachadas residenciais", "Fachadas comerciais e de lojas", "Imagens finais realistas"],
+    text: "Fachada de casa ou de comércio, da primeira ideia até a imagem final.",
+    items: ["Residencial", "Comercial", "Imagem final em 3D"],
     image: "/img/fachada-casa.webp",
   },
 ];
 
 export const steps = [
-  { title: "Orçamento", text: "Você chama no WhatsApp, conta qual ambiente quer transformar e recebe o orçamento." },
-  { title: "Briefing", text: "Entendemos seu estilo, suas necessidades e o que você já tem, tudo online, de onde você estiver." },
-  { title: "Projeto 3D", text: "Desenvolvemos o projeto com imagens 3D realistas, ajustando com você até ficar do jeito que sonhou." },
-  { title: "Detalhamento", text: "Entregamos o projeto completo para execução, com marcenaria, iluminação e detalhamentos para evitar erros na obra." },
+  { title: "Você chama no WhatsApp", text: "Conta qual ambiente quer mudar e manda fotos e medidas, se tiver. A gente responde com o orçamento." },
+  { title: "Conversa sobre o projeto", text: "Entendemos o seu gosto, a sua rotina e o que dá para aproveitar. Tudo online, de onde você estiver." },
+  { title: "Imagens 3D", text: "Você recebe o ambiente em 3D e pede os ajustes que quiser antes de fechar." },
+  { title: "Projeto para a obra", text: "Entregamos o detalhamento com marcenaria e iluminação, pronto para o marceneiro e o pedreiro." },
 ];
 
 // Avaliações reais do Google Maps (todas 5 estrelas). Onde o Google corta o texto, encerramos na última frase completa.
 export const testimonials = [
   {
-    name: "Milena Santana",
-    tag: "Projeto residencial",
-    text: "Amei o projeto e também todo o processo, o cuidado com o cliente, o retorno, as sugestões, enfim, foi tão bom que vou contratar novamente para outros ambientes e indicar para amigas.",
+    name: "Diego Silva",
+    when: "há 3 meses",
+    text: "Meu segundo projeto com a empresa, estou indo para o terceiro. Eles são perfeitos, o profissional que me atende é muito compreensivo. Vou fechar a casa inteira com eles!",
   },
   {
     name: "Adriana Aragão de Assis",
-    tag: "Quarto infantil",
     text: "Fiz o projeto do quarto da minha filha com a Studio E, ficou lindo! As arquitetas foram muito atenciosas e sensíveis com as minhas preferências. Inclusive já quero projetar outro ambiente.",
   },
   {
     name: "Andréa Lima",
-    tag: "Projeto comercial",
-    text: "Precisava reaproveitar mobiliário que já possuía, em outra loja, e deu muito certo. Um custo baixo e benefício excepcional, além de conseguirem captar o que queríamos.",
-  },
-  {
-    name: "Diego Silva",
-    tag: "Cliente recorrente",
-    text: "Meu segundo projeto com a empresa, estou indo para o terceiro. Eles são perfeitos, o profissional que me atende é muito compreensivo. Vou fechar a casa inteira com eles!",
+    text: "Experiência excelente, precisava reaproveitar mobiliário que já possuía, em outra loja, e deu muito certo. Um custo baixo e benefício excepcional, além de conseguirem captar o que queríamos. Adorei.",
   },
   {
     name: "Ana Carolina Amaral",
-    tag: "Cozinha",
     text: "As meninas são ótimas, atenciosas. O projeto da minha cozinha ficou lindo e já até executei, agora estou seguindo para o projeto do quarto. Recomendo!",
   },
   {
+    name: "Milena Santana",
+    text: "Amei o projeto e também todo o processo, o cuidado com o cliente, o retorno, as sugestões, enfim, foi tão bom que vou contratar novamente para outros ambientes e indicar para amigas.",
+  },
+  {
+    name: "André Alves",
+    when: "há 4 meses",
+    text: "Profissionais muito bons. Fiz meu projeto de um ambiente e superou minhas expectativas. Recomendo.",
+  },
+  {
     name: "Gislene Borges",
-    tag: "Projeto residencial",
     text: "Ótima experiência, a equipe é extremamente profissional e atenciosa, iniciei com 1 ambiente e vou fechar outros. Super recomendo.",
+  },
+  {
+    name: "Kelly Karinne",
+    text: "São maravilhosos, foram os únicos que conseguiram fazer do jeito que sempre sonhei. Amei, vou fazer todos os cômodos com eles.",
   },
 ];
 
 export const faqs = [
-  {
-    q: "Vocês atendem fora de São Paulo?",
-    a: "Sim. O Studio Ello trabalha 100% online e atende clientes de todo o Brasil.",
-  },
-  {
-    q: "Posso fazer o projeto de um só ambiente?",
-    a: "Pode. O orçamento é feito por ambiente: muitos clientes começam com um cômodo e depois seguem para os outros.",
-  },
-  {
-    q: "O que vem no projeto?",
-    a: "Imagens 3D realistas, layout, marcenaria planejada, iluminação e os detalhamentos para executar a obra sem erros.",
-  },
-  {
-    q: "Dá para reaproveitar os móveis que eu já tenho?",
-    a: "Sim. O projeto considera o que você já possui e pensa em como aproveitar cada peça da melhor forma.",
-  },
-  {
-    q: "Vocês fazem projetos comerciais e de consultórios?",
-    a: "Sim: lojas, showrooms, escritórios, cafeterias, studios de beleza, consultórios odontológicos, clínicas e fachadas.",
-  },
-  {
-    q: "Como peço um orçamento?",
-    a: "É só chamar no WhatsApp contando qual ambiente você quer transformar. A equipe responde com o orçamento.",
-  },
+  { q: "Vocês atendem fora de São Paulo?", a: "Atendemos. O studio é todo online, então trabalhamos com clientes do Brasil inteiro." },
+  { q: "Dá para fazer só um ambiente?", a: "Dá, o orçamento é por ambiente. Muita gente começa por um cômodo e depois volta para fazer os outros." },
+  { q: "O que eu recebo no final?", a: "As imagens 3D do ambiente e o detalhamento para a obra: marcenaria, iluminação e o que mais o projeto precisar." },
+  { q: "Posso aproveitar os móveis que já tenho?", a: "Pode. Contando o que você já tem, o projeto encaixa essas peças onde ficarem melhor." },
+  { q: "Como peço um orçamento?", a: "Chama no WhatsApp contando qual ambiente você quer mudar. Se tiver fotos e medidas, já ajuda." },
 ];
 
 // Galeria: slides extras dos carrosséis do Instagram (imagens 3D em 1440px) e plantas técnicas
