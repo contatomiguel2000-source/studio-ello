@@ -5,9 +5,9 @@ export const studio = {
   legal: "E Projetos e Interiores",
   instagram: "https://www.instagram.com/e_projetos_interiores/",
   instagramHandle: "@e_projetos_interiores",
-  phone: "(11) 96966-3686",
-  phoneHref: "tel:+5511969663686",
-  whatsapp: "5511969663686",
+  phone: "(11) 99305-9719",
+  phoneHref: "tel:+5511993059719",
+  whatsapp: "5511993059719",
   address: "Av. Paulista, 1636 - Bela Vista",
   city: "São Paulo - SP, 01310-200",
   mapsUrl:
