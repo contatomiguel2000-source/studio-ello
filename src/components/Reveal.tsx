@@ -80,7 +80,7 @@ export function Counter({
 
   return (
     <span ref={ref} className={className}>
-      {n.toFixed(decimals)}
+      {n.toLocaleString("pt-BR", { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}
     </span>
   );
 }

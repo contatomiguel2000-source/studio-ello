@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
-/* Paleta do layout de referência (Vantara): creme, bronze e grafite. O bronze casa com o terracota do Studio Ello. */
+/* Paleta do layout de referência (Architecto): fundo escuro quente, dourado e creme. */
 @theme inline {
-  --color-cream: #f7f4ed;
-  --color-ivory: #faf8f6;
-  --color-sand: #ece4d8;
-  --color-bronze-light: #d9b48c;
-  --color-bronze: #87603a; /* escurecido para contraste de leitura */
-  --color-bronze-dark: #6c4a2b;
-  --color-ink: #121820;
-  --color-muted: #4a4f57;
-  --color-line: #e4ddd1;
-  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
-  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --color-night: #0f0e0c;
+  --color-coal: #1c1a17;
+  --color-umber: #24211d;
+  --color-gold: #b08d57;
+  --color-gold-light: #cfae7a;
+  --color-cream: #f1e9da;
+  --color-sand: #b9b0a3; /* texto secundário no fundo escuro */
+  --color-line: #3a352e;
+  --color-ink: #1c1a17;
+  --font-sans: var(--font-manrope), "Manrope", system-ui, sans-serif;
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-script: var(--font-script), "Mrs Saint Delafield", cursive;
 }
 
 html {
@@ -20,108 +21,117 @@ html {
 }
 
 body {
-  background: var(--color-cream);
-  color: var(--color-ink);
-  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  background: var(--color-coal);
+  color: var(--color-cream);
+  font-family: var(--font-manrope), "Manrope", system-ui, sans-serif;
 }
 
 section[id] {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 4.5rem;
 }
 
-.t-hero,
-.t-h2,
-.t-h3 {
-  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
 .t-hero {
-  font-size: clamp(2.8rem, 5.6vw, 4.6rem);
-  line-height: 1.02;
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
+  font-size: clamp(3.2rem, 8vw, 7.2rem);
+  line-height: 0.98;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 .t-h2 {
-  font-size: clamp(2.3rem, 4vw, 3.4rem);
-  line-height: 1.05;
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  line-height: 1.12;
+  font-weight: 400;
 }
 .t-h3 {
-  font-size: clamp(1.4rem, 2vw, 1.75rem);
-  line-height: 1.15;
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
+  font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+  line-height: 1.2;
+  font-weight: 400;
+}
+.kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
 }
 
-@layer components {
-  /* Rótulo com tracinho, como "— ABOUT VANTARA LIVING" */
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-bronze);
-  }
-  .eyebrow::before {
-    content: "";
-    width: 1.75rem;
-    height: 1px;
-    background: currentColor;
-  }
-  /* Cartão de vidro fosco */
-  .glass {
-    background: rgb(255 255 255 / 0.9);
-    border: 1px solid rgb(255 255 255 / 0.8);
-    border-radius: 1rem;
-    box-shadow: 0 10px 40px rgb(18 24 32 / 0.08);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: 2px;
-    padding: 0.75rem 1.4rem;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition:
-      background 0.2s ease,
-      color 0.2s ease;
-  }
-  .btn-dark {
-    background: var(--color-ink);
-    color: #fff;
-  }
-  .btn-dark:hover {
-    background: var(--color-bronze-dark);
-  }
-  .btn-bronze {
-    background: var(--color-bronze);
-    color: #fff;
-  }
-  .btn-bronze:hover {
-    background: var(--color-bronze-dark);
-  }
-  .btn-light {
-    border: 1px solid var(--color-line);
-    background: #fff;
-    color: var(--color-ink);
-  }
-  .btn-light:hover {
-    border-color: var(--color-bronze);
-  }
-}
-
+/* Aparição ao rolar */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(30px);
   transition:
-    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+    opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* Zoom lento do slide ativo */
+@keyframes kenburns {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.kenburns {
+  animation: kenburns 7s ease-out forwards;
+}
+
+/* Texto do slide subindo */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin 22s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -132,5 +142,11 @@ section[id] {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .kenburns,
+  .rise,
+  .spin-slow,
+  .marquee {
+    animation: none;
   }
 }

@@ -238,3 +238,21 @@ export const tours = [
   { slug: "consultorio", title: "Consultório de estética", type: "Comercial" },
   { slug: "dormitorio-treliche", title: "Dormitório com treliche", type: "Residencial" },
 ];
+
+// Slides do topo (projetos reais, imagens 1440px)
+export const heroSlides = [
+  { kind: "Residencial", title: ["Sala com", "cozinha integrada"], image: "/img/hero-sala.webp" },
+  { kind: "Comercial", title: ["Joalheria", "Unity"], image: "/img/joalheria-unity.webp" },
+  { kind: "Residencial", title: ["Área", "gourmet"], image: "/img/area-gourmet.webp" },
+  { kind: "Residencial", title: ["Sala de estar", "e TV"], image: "/img/sala-tv.webp" },
+];
+
+// Arcos de ambientes
+export const arches = [
+  { title: "Salas", image: "/img/g-sala-estar.webp" },
+  { title: "Cozinhas", image: "/img/cozinha-ilha.webp" },
+  { title: "Quartos", image: "/img/g-quarto-meninas.webp" },
+  { title: "Banheiros", image: "/img/tour-sanitario-feminino.webp" },
+  { title: "Lojas", image: "/img/g-loja-verde.webp" },
+  { title: "Consultórios", image: "/img/consultorio.webp" },
+];

@@ -1,253 +1,273 @@
 import Image from "next/image";
 import { Header, Logo } from "@/components/Header";
-import { ServicesTabs } from "@/components/ServicesTabs";
+import { HeroSlider } from "@/components/HeroSlider";
+import { Counter, Reveal } from "@/components/Reveal";
 import { ContactForm } from "@/components/ContactForm";
 import { Gallery } from "@/components/Gallery";
 import { TourVideo } from "@/components/Tours";
-import { IconInstagram, IconPin, IconStar, IconWhatsapp } from "@/components/Icons";
-import { faqs, featured, nav, rooms, steps, studio, testimonials, tours, whatsappLink } from "@/lib/data";
+import { ProjectList, RotatingBadge, ServicesCarousel, Spotlight, TestimonialSlider, VideoPlay } from "@/components/Interactive";
+import { IconInstagram, IconPin, IconWhatsapp } from "@/components/Icons";
+import { arches, faqs, featured, nav, steps, studio, tours, whatsappLink } from "@/lib/data";
 import { asset } from "@/lib/base-path";
 
 // Conteúdo limitado a 1160px (o padding fica fora dessa largura)
 const wrap = "mx-auto w-full max-w-[calc(1160px+2rem)] px-4 md:max-w-[calc(1160px+4rem)] md:px-8";
 
-const usedInFeatured = new Set(featured.map((f) => f.video).filter(Boolean));
-const otherTours = tours.filter((t) => !usedInFeatured.has(t.slug));
-
-function Stars() {
-  return (
-    <span className="flex gap-0.5 text-bronze" aria-label="5 estrelas">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <IconStar key={i} className="h-3.5 w-3.5" />
-      ))}
-    </span>
-  );
-}
+const usedVideos = new Set(featured.map((f) => f.video).filter(Boolean));
+const moreTours = tours.filter((t) => !usedVideos.has(t.slug));
 
 export default function Home() {
-  const [first, ...rest] = featured;
-
   return (
     <>
       <Header />
 
       <main>
-        {/* Topo */}
-        <section id="inicio" className="pt-24 md:pt-28">
-          <div className={wrap}>
-            <div className="grid gap-8 md:grid-cols-[1fr_1.35fr] md:items-end">
-              <div className="pb-2">
-                <h1 className="t-hero">Projetos de interiores online, para todo o Brasil.</h1>
-                <p className="mt-5 max-w-[27rem] text-[1.05rem] leading-relaxed text-muted">
-                  Somos o Studio Ello. Fazemos o projeto da sua casa, loja ou consultório com imagens 3D e o detalhamento para a obra. Já são mais de 5 mil projetos entregues.
-                </p>
-                <div className="mt-7 flex flex-wrap items-center gap-5">
-                  <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-                    Pedir orçamento no WhatsApp
-                  </a>
-                  <a href="#projetos" className="text-[0.95rem] font-medium underline decoration-bronze underline-offset-4">
-                    Ver projetos
-                  </a>
-                </div>
-                <a href={studio.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-8 flex items-center gap-2 text-[0.9rem] text-muted">
-                  <Stars /> {studio.rating} no Google, {studio.reviewCount} avaliações
-                </a>
+        <HeroSlider />
+
+        {/* Apresentação */}
+        <section id="quem-somos" className="py-24 md:py-32">
+          <div className={`${wrap} text-center`}>
+            <Reveal>
+              <p className="kicker">Studio Ello · Projetos e Interiores</p>
+              <p className="mt-6 font-serif text-[clamp(4rem,9vw,6.5rem)] leading-none text-gold-light">
+                <Counter value={5000} />+
+              </p>
+              <p className="kicker mt-3 !text-sand">projetos entregues</p>
+            </Reveal>
+            <Reveal delay={120}>
+              <h2 className="t-h2 mx-auto mt-10 max-w-[44rem]">
+                Fazemos o projeto da sua casa, loja ou consultório <em className="text-gold-light">sem você sair de onde está.</em>
+              </h2>
+              <p className="mx-auto mt-6 max-w-[36rem] leading-relaxed text-sand">
+                A equipe de arquitetas e designers de interiores atende o Brasil inteiro pelo WhatsApp. Você recebe o ambiente em imagens 3D e o detalhamento para a obra.
+              </p>
+              <div className="mt-8 flex items-center justify-center gap-4">
+                <span className="relative h-16 w-16 overflow-hidden rounded-full border border-gold/60">
+                  <Image src={asset("/img/emily-caroline.webp")} alt="Emily Caroline" fill unoptimized sizes="64px" className="object-cover object-top" />
+                </span>
+                <span className="text-left">
+                  <span className="block font-script text-[2.4rem] leading-none text-gold-light">Emily Caroline</span>
+                  <span className="block text-[0.85rem] text-sand">CEO do Studio Ello</span>
+                </span>
               </div>
-              <figure>
-                <div className="relative aspect-[1440/990] overflow-hidden bg-sand md:-mr-8">
-                  <Image src={asset("/img/hero-sala.webp")} alt="Sala de estar com sofá curvo e cozinha integrada" fill priority unoptimized sizes="(min-width: 768px) 680px, 100vw" className="object-cover" />
-                </div>
-                <figcaption className="mt-2 text-[0.82rem] text-muted">Sala com cozinha integrada, imagem 3D do projeto.</figcaption>
-              </figure>
+            </Reveal>
+
+            <div className="mx-auto mt-16 grid max-w-[52rem] grid-cols-3 gap-4 border-t border-line pt-10">
+              {[
+                { v: <Counter value={5} decimals={1} />, l: "nota no Google" },
+                { v: <Counter value={47} />, l: "avaliações" },
+                { v: <Counter value={13} />, l: "tipos de ambiente" },
+              ].map((c, i) => (
+                <Reveal key={c.l} delay={i * 100}>
+                  <p className="font-serif text-[clamp(2rem,4vw,3rem)] leading-none">{c.v}</p>
+                  <p className="kicker mt-3 !text-[0.68rem] !text-sand">{c.l}</p>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Projetos reais */}
-        <section id="projetos" className="pt-24 md:pt-32">
-          <div className={wrap}>
-            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-              <h2 className="t-h2">Alguns projetos nossos</h2>
-              <a href={studio.instagram} target="_blank" rel="noopener noreferrer" className="text-[0.92rem] text-muted hover:text-ink">
-                Tem mais no Instagram, {studio.instagramHandle}
-              </a>
-            </div>
-
-            {/* destaque */}
-            <article className="mt-10 grid gap-6 md:grid-cols-[1.6fr_1fr] md:items-end">
-              <div className="relative aspect-[16/10] overflow-hidden bg-sand">
-                {first.video ? <TourVideo slug={first.video} title={first.title} /> : null}
-              </div>
-              <div>
-                <p className="text-[0.85rem] text-muted">{first.kind}</p>
-                <h3 className="t-h3 mt-1">{first.title}</h3>
-                <blockquote className="mt-4 border-l-2 border-bronze pl-4 text-[1rem] leading-relaxed">“{first.note}”</blockquote>
-                <p className="mt-2 pl-[1.1rem] text-[0.82rem] text-muted">Comentário da equipe no post do projeto</p>
-              </div>
-            </article>
-
-            {/* demais projetos em grade irregular */}
-            <div className="mt-16 grid gap-x-8 gap-y-14 md:grid-cols-12">
-              {rest.map((p, i) => {
-                const layout = ["md:col-span-7", "md:col-span-5 md:mt-24", "md:col-span-5", "md:col-span-7 md:-mt-20", "md:col-span-6", "md:col-span-6 md:mt-16", "md:col-span-8 md:col-start-3"][i] ?? "md:col-span-6";
-                const ratio = p.image === "/img/lavanderia.webp" ? "aspect-[4/5]" : "aspect-[16/10]";
-                return (
-                  <article key={p.title} className={layout}>
-                    <div className={`relative overflow-hidden bg-sand ${ratio}`}>
-                      {p.video ? (
-                        <TourVideo slug={p.video} title={p.title} />
-                      ) : (
-                        <Image src={asset(p.image!)} alt={p.title} fill quality={90} sizes="(min-width: 768px) 640px, 100vw" className="object-cover" />
-                      )}
-                    </div>
-                    <div className="mt-3 flex items-baseline justify-between gap-4">
-                      <h3 className="text-[1.05rem] font-medium">{p.title}</h3>
-                      <span className="shrink-0 text-[0.82rem] text-muted">{p.kind}</span>
-                    </div>
-                    <p className="mt-1.5 max-w-[34rem] text-[0.95rem] leading-relaxed text-muted">“{p.note}”</p>
-                  </article>
-                );
-              })}
-            </div>
+        {/* Foto + vídeo */}
+        <section className="pb-24 md:pb-32">
+          <div className={`${wrap} grid md:grid-cols-[1.4fr_1fr]`}>
+            <Reveal className="relative aspect-[16/11] overflow-hidden">
+              <Image src={asset("/img/tour-sala.webp")} alt="Sala com vista para o jardim, imagem 3D do projeto" fill quality={90} sizes="(min-width: 768px) 660px, 100vw" className="object-cover" />
+            </Reveal>
+            <Reveal delay={120} className="flex items-center justify-center bg-umber px-6 py-14">
+              <VideoPlay slug="sala" label="Vídeo do projeto: sala com vista para o jardim" />
+            </Reveal>
           </div>
         </section>
 
-        {/* Quem somos */}
-        <section id="quem-somos" className="mt-28 bg-sand py-20 md:mt-36 md:py-24">
-          <div className={`${wrap} grid gap-10 md:grid-cols-[0.75fr_1.25fr] md:gap-16`}>
-            <figure>
-              <div className="relative aspect-[7/10] overflow-hidden">
-                <Image src={asset("/img/emily-caroline.webp")} alt="Emily Caroline" fill unoptimized sizes="(min-width: 768px) 360px, 100vw" className="object-cover" />
-              </div>
-              <figcaption className="mt-2 text-[0.85rem] text-muted">Emily Caroline, CEO do Studio Ello</figcaption>
-            </figure>
-            <div className="md:pt-6">
-              <h2 className="t-h2">Quem somos</h2>
-              <div className="mt-6 max-w-[34rem] space-y-4 text-[1.02rem] leading-relaxed">
-                <p>
-                  O Studio Ello nasceu online e continua assim: a equipe de arquitetas e designers de interiores atende clientes do Brasil inteiro sem precisar de visita presencial.
-                </p>
-                <p>
-                  À frente do studio está a Emily Caroline, formada em Marketing, escritora e palestrante. Ela costuma dizer que a jornada de um studio totalmente online é árdua, mas que cada etapa vale a pena.
-                </p>
-              </div>
-              <blockquote className="mt-8 max-w-[34rem] font-serif text-[1.6rem] leading-snug">
-                “Entendo que o lar é o nosso refúgio e que o design de interiores precisa ser acessível a todos.”
-              </blockquote>
-              <p className="mt-3 text-[0.9rem] text-muted">Emily Caroline</p>
-
-              <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {["/img/cozinha.webp", "/img/quarto-soccer.webp", "/img/espaco-gourmet.webp"].map((src, i) => (
-                  <div key={src} className={`relative aspect-[4/3] overflow-hidden ${i === 2 ? "max-sm:hidden" : ""}`}>
-                    <Image src={asset(src)} alt="" fill quality={90} sizes="220px" className="object-cover" />
+        {/* Ambientes em arcos */}
+        <section className="pb-24 md:pb-32">
+          <div className={`${wrap} text-center`}>
+            <Reveal>
+              <p className="kicker">O que a gente projeta</p>
+              <h2 className="t-h2 mt-4">
+                Do quarto à loja, <em className="text-gold-light">cada ambiente</em> tem seu projeto
+              </h2>
+            </Reveal>
+            <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+              {arches.map((a, i) => (
+                <Reveal key={a.title} delay={i * 80}>
+                  <div className="group relative aspect-[3/4.4] overflow-hidden rounded-t-full border border-gold/40 transition-transform duration-500 hover:-translate-y-3">
+                    <Image src={asset(a.image)} alt={a.title} fill quality={90} sizes="(min-width: 1024px) 180px, 45vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-4">
+                      <p className="font-serif text-[0.95rem] italic text-gold-light">{String(i + 1).padStart(2, "0")}</p>
+                      <p className="mt-1 text-[0.95rem] font-medium">{a.title}</p>
+                    </div>
                   </div>
-                ))}
-              </div>
+                </Reveal>
+              ))}
             </div>
+            <div className="mx-auto mt-6 h-px max-w-[60rem] bg-gold/40" aria-hidden />
           </div>
         </section>
 
         {/* Serviços */}
-        <section id="servicos" className="py-24 md:py-32">
+        <section id="servicos" className="bg-umber py-24 md:py-32">
           <div className={wrap}>
-            <h2 className="t-h2">O que a gente projeta</h2>
-            <p className="mt-4 max-w-[36rem] leading-relaxed text-muted">
-              {rooms[0]}, {rooms.slice(1, -1).map((r) => r.toLowerCase()).join(", ")} e {rooms[rooms.length - 1].toLowerCase()}. Alguns exemplos por tipo de projeto:
-            </p>
-            <div className="mt-10">
-              <ServicesTabs />
+            <div className="grid gap-6 md:grid-cols-2 md:items-end">
+              <Reveal>
+                <p className="kicker">Serviços</p>
+                <h2 className="t-h2 mt-4">
+                  Projeto completo, <em className="text-gold-light">pronto para a obra.</em>
+                </h2>
+              </Reveal>
+              <Reveal delay={100}>
+                <p className="leading-relaxed text-sand">Imagens 3D, marcenaria planejada, iluminação e o detalhamento que o marceneiro e o pedreiro precisam. Arraste para o lado para ver todos.</p>
+              </Reveal>
             </div>
+            <Reveal delay={150} className="mt-12">
+              <ServicesCarousel />
+            </Reveal>
+          </div>
+        </section>
+
+        {/* letreiro */}
+        <div className="overflow-hidden border-y border-line py-6" aria-hidden>
+          <div className="marquee gap-10 whitespace-nowrap font-serif text-[clamp(2rem,4vw,3.4rem)] text-cream/20">
+            {Array.from({ length: 2 }).map((_, k) => (
+              <span key={k} className="flex gap-10">
+                {["Salas", "Cozinhas", "Quartos", "Banheiros", "Lojas", "Consultórios", "Fachadas", "Áreas gourmet"].map((t) => (
+                  <span key={t} className="flex items-center gap-10">
+                    <em>{t}</em> <span className="text-gold/60">✦</span>
+                  </span>
+                ))}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Projetos */}
+        <section id="projetos" className="py-24 md:py-32">
+          <div className={wrap}>
+            <div className="grid gap-6 md:grid-cols-[1fr_1.2fr] md:items-end">
+              <Reveal>
+                <p className="kicker">Projetos recentes</p>
+                <h2 className="t-h2 mt-4">
+                  Alguns projetos <em className="text-gold-light">nossos</em>
+                </h2>
+              </Reveal>
+              <Reveal delay={100}>
+                <p className="leading-relaxed text-sand"><span className="max-md:hidden">Passe o mouse em cada linha para ver o projeto. </span>As frases são os comentários que a equipe escreveu no Instagram.</p>
+              </Reveal>
+            </div>
+            <Reveal delay={150} className="mt-12">
+              <ProjectList />
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Destaque */}
+        <section className="pb-24 md:pb-32">
+          <div className={wrap}>
+            <Reveal>
+              <Spotlight />
+            </Reveal>
           </div>
         </section>
 
         {/* Mais vídeos */}
-        {otherTours.length > 0 && (
-          <section className="pb-24 md:pb-32">
-            <div className={wrap}>
+        <section className="pb-24 md:pb-32">
+          <div className={wrap}>
+            <Reveal>
               <h2 className="t-h3">Mais vídeos de projetos</h2>
-              <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
-                {otherTours.map((t) => (
-                  <figure key={t.slug}>
-                    <div className="relative aspect-[16/10] overflow-hidden bg-sand">
-                      <TourVideo slug={t.slug} title={t.title} />
-                    </div>
-                    <figcaption className="mt-2 text-[0.88rem]">{t.title}</figcaption>
-                  </figure>
+            </Reveal>
+            <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">
+              {moreTours.map((t, i) => (
+                <Reveal key={t.slug} delay={(i % 3) * 90}>
+                  <div className="group relative aspect-[16/10] overflow-hidden bg-night">
+                    <TourVideo slug={t.slug} title={t.title} className="transition-transform duration-700 group-hover:scale-105" />
+                  </div>
+                  <p className="mt-2 text-[0.9rem]">{t.title}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Depoimentos + selo */}
+        <section id="depoimentos" className="relative overflow-hidden bg-night py-24 md:py-32">
+          <div className={wrap}>
+            <Reveal className="text-center">
+              <p className="kicker">Depoimentos do Google · {studio.rating} com {studio.reviewCount} avaliações</p>
+            </Reveal>
+            <Reveal delay={100} className="mt-10">
+              <TestimonialSlider />
+            </Reveal>
+          </div>
+          <div className="relative mt-20">
+            <div className="overflow-hidden" aria-hidden>
+              <div className="marquee gap-16 whitespace-nowrap font-serif text-[clamp(4rem,10vw,8rem)] leading-none text-cream/[0.06]">
+                {Array.from({ length: 4 }).map((_, k) => (
+                  <span key={k}>interiores · projetos · </span>
                 ))}
               </div>
             </div>
-          </section>
-        )}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <RotatingBadge />
+            </div>
+          </div>
+        </section>
 
         {/* Galeria */}
-        <section id="galeria" className="border-t border-line py-24 md:py-32">
+        <section id="galeria" className="py-24 md:py-32">
           <div className={wrap}>
-            <h2 className="t-h2">Galeria</h2>
-            <p className="mt-4 max-w-[36rem] leading-relaxed text-muted">
-              Imagens tiradas dos nossos projetos. Em “Detalhamento” estão algumas plantas técnicas que vão junto com o projeto.
-            </p>
-            <div className="mt-8">
+            <Reveal className="text-center">
+              <p className="kicker">Galeria</p>
+              <h2 className="t-h2 mt-4">
+                Mais <em className="text-gold-light">imagens</em> dos projetos
+              </h2>
+            </Reveal>
+            <div className="mt-10">
               <Gallery />
             </div>
           </div>
         </section>
 
         {/* Como funciona */}
-        <section id="como-funciona" className="bg-ink py-20 text-white md:py-24">
+        <section id="como-funciona" className="bg-umber py-24 md:py-28">
           <div className={`${wrap} grid gap-10 md:grid-cols-[0.8fr_1.2fr]`}>
-            <div>
-              <h2 className="t-h2">Como funciona</h2>
-              <p className="mt-4 max-w-[22rem] leading-relaxed text-white/80">Tudo acontece pelo WhatsApp e por chamada, então não importa em que cidade você está.</p>
-            </div>
-            <ol className="space-y-8">
+            <Reveal>
+              <p className="kicker">Como funciona</p>
+              <h2 className="t-h2 mt-4">
+                Tudo pelo WhatsApp, <em className="text-gold-light">de onde você estiver.</em>
+              </h2>
+            </Reveal>
+            <ol className="border-t border-line">
               {steps.map((s, i) => (
-                <li key={s.title} className="grid grid-cols-[2rem_1fr] gap-3">
-                  <span className="font-serif text-[1.5rem] leading-none text-bronze-light">{i + 1}.</span>
-                  <span>
-                    <span className="block text-[1.1rem] font-medium">{s.title}</span>
-                    <span className="mt-1 block leading-relaxed text-white/80">{s.text}</span>
-                  </span>
-                </li>
+                <Reveal key={s.title} delay={i * 90}>
+                  <li className="group grid grid-cols-[3rem_1fr] gap-4 border-b border-line py-6">
+                    <span className="font-serif text-[1.6rem] italic leading-none text-gold-light transition-transform duration-300 group-hover:-translate-y-1">{String(i + 1).padStart(2, "0")}</span>
+                    <span>
+                      <span className="block text-[1.1rem] font-medium">{s.title}</span>
+                      <span className="mt-1 block leading-relaxed text-sand">{s.text}</span>
+                    </span>
+                  </li>
+                </Reveal>
               ))}
             </ol>
           </div>
         </section>
 
-        {/* Depoimentos */}
-        <section id="depoimentos" className="py-24 md:py-32">
-          <div className={wrap}>
-            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-              <h2 className="t-h2">O que os clientes escreveram no Google</h2>
-              <a href={studio.mapsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[0.92rem] text-muted hover:text-ink">
-                <Stars /> {studio.rating}, {studio.reviewCount} avaliações
-              </a>
-            </div>
-            <div className="mt-10 columns-1 gap-8 sm:columns-2 lg:columns-3">
-              {testimonials.map((t) => (
-                <figure key={t.name} className="mb-8 break-inside-avoid border-t border-line pt-5">
-                  <blockquote className="leading-relaxed">{t.text}</blockquote>
-                  <figcaption className="mt-4 text-[0.88rem]">
-                    <span className="font-medium">{t.name}</span>
-                    {"when" in t && t.when ? <span className="text-muted">, {t.when}</span> : null}
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Dúvidas */}
-        <section id="duvidas" className="border-t border-line py-24 md:py-28">
+        <section id="duvidas" className="py-24 md:py-28">
           <div className={`${wrap} grid gap-10 md:grid-cols-[0.8fr_1.2fr]`}>
-            <h2 className="t-h2">Dúvidas comuns</h2>
+            <Reveal>
+              <p className="kicker">Dúvidas</p>
+              <h2 className="t-h2 mt-4">Perguntas comuns</h2>
+            </Reveal>
             <div>
               {faqs.map((f) => (
                 <details key={f.q} className="group border-b border-line py-5 first:pt-0">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[1.02rem] font-medium">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[1.02rem] font-medium transition-colors hover:text-gold-light">
                     {f.q}
-                    <span className="text-xl leading-none text-bronze transition-transform group-open:rotate-45">+</span>
+                    <span className="text-xl leading-none text-gold-light transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="mt-3 leading-relaxed text-muted">{f.a}</p>
+                  <p className="mt-3 leading-relaxed text-sand">{f.a}</p>
                 </details>
               ))}
             </div>
@@ -255,53 +275,66 @@ export default function Home() {
         </section>
 
         {/* Contato */}
-        <section id="contato" className="bg-sand py-20 md:py-28">
-          <div className={`${wrap} grid gap-10 md:grid-cols-[0.8fr_1.2fr]`}>
-            <div>
-              <h2 className="t-h2">Vamos conversar?</h2>
-              <p className="mt-4 max-w-[24rem] leading-relaxed text-muted">O jeito mais rápido é o WhatsApp. Se preferir, preencha ao lado que a mensagem já vai pronta.</p>
-              <ul className="mt-8 space-y-3 text-[0.95rem]">
-                <li>
-                  <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-bronze">
-                    <IconWhatsapp className="h-4 w-4" /> {studio.phone}
-                  </a>
-                </li>
-                <li>
-                  <a href={studio.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-bronze">
-                    <IconInstagram className="h-4 w-4" /> {studio.instagramHandle}
-                  </a>
-                </li>
-                <li className="flex gap-2 text-muted">
-                  <IconPin className="mt-1 h-4 w-4 shrink-0" />
-                  <span>
-                    {studio.address}, {studio.city}
-                  </span>
-                </li>
-              </ul>
+        <section id="contato" className="bg-night py-24 md:py-28">
+          <div className={wrap}>
+            <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+              <Reveal>
+                <p className="kicker">Contato</p>
+                <h2 className="t-h2 mt-4 max-w-[30rem]">
+                  Todo projeto começa com uma <em className="text-gold-light">conversa.</em>
+                </h2>
+                <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block font-serif text-[1.4rem] underline decoration-gold underline-offset-8 hover:text-gold-light">
+                  {studio.phone}
+                </a>
+              </Reveal>
+              <div className="hidden md:block">
+                <RotatingBadge />
+              </div>
             </div>
-            <ContactForm />
+
+            <Reveal delay={100} className="mt-12 border border-line">
+              <div className="flex justify-between border-b border-line px-5 py-3 text-[0.78rem] uppercase tracking-[0.14em] text-sand">
+                <span>Studio Ello · contatos</span>
+                <span>{studio.legal}</span>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  { k: "01 · WhatsApp", t: studio.phone, href: whatsappLink(), icon: <IconWhatsapp className="h-4 w-4" /> },
+                  { k: "02 · Instagram", t: studio.instagramHandle, href: studio.instagram, icon: <IconInstagram className="h-4 w-4" /> },
+                  { k: "03 · Endereço", t: `${studio.address}, ${studio.city}`, href: studio.mapsUrl, icon: <IconPin className="h-4 w-4" /> },
+                  { k: "04 · Atendimento", t: "Online, para todo o Brasil", href: "#como-funciona", icon: null },
+                ].map((c) => (
+                  <a key={c.k} href={c.href} {...(c.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="group border-line p-5 transition-colors hover:bg-umber sm:border-l sm:[&:nth-child(odd)]:border-l-0 lg:[&:nth-child(odd)]:border-l lg:first:border-l-0 max-sm:border-t max-sm:first:border-t-0">
+                    <p className="text-[0.75rem] uppercase tracking-[0.14em] text-gold-light">{c.k}</p>
+                    <p className="mt-3 flex items-start gap-2 leading-relaxed">
+                      {c.icon ? <span className="mt-1 text-sand">{c.icon}</span> : null}
+                      <span className="transition-colors group-hover:text-gold-light">{c.t}</span>
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal delay={150} className="mt-10">
+              <ContactForm />
+            </Reveal>
           </div>
         </section>
       </main>
 
-      <footer className="py-12">
-        <div className={`${wrap} flex flex-col gap-6 md:flex-row md:items-end md:justify-between`}>
-          <div>
-            <Logo />
-            <p className="mt-2 text-[0.88rem] text-muted">{studio.legal} · projetos de interiores online</p>
-          </div>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[0.88rem] text-muted">
+      <footer className="border-t border-line bg-night py-10">
+        <div className={`${wrap} flex flex-col gap-6 md:flex-row md:items-center md:justify-between`}>
+          <Logo />
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[0.88rem] text-sand">
             {nav.map((n) => (
               <li key={n.href}>
-                <a href={n.href} className="hover:text-ink">
+                <a href={n.href} className="hover:text-gold-light">
                   {n.label}
                 </a>
               </li>
             ))}
           </ul>
-        </div>
-        <div className={wrap}>
-          <p className="mt-8 border-t border-line pt-5 text-[0.82rem] text-muted">© {new Date().getFullYear()} {studio.name}</p>
+          <p className="text-[0.82rem] text-sand">© {new Date().getFullYear()} {studio.name}</p>
         </div>
       </footer>
 
@@ -310,7 +343,7 @@ export default function Home() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar pelo WhatsApp"
-        className="fixed bottom-5 right-4 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-[#25d366] text-white shadow-[0_6px_18px_rgba(0,0,0,0.18)]"
+        className="fixed bottom-5 right-4 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-[#25d366] text-white shadow-[0_6px_18px_rgba(0,0,0,0.35)] transition-transform hover:scale-110"
       >
         <IconWhatsapp className="h-6 w-6" />
       </a>

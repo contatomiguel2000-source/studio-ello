@@ -1,26 +1,33 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Manrope, Mrs_Saint_Delafield, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+});
+
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const script = Mrs_Saint_Delafield({
+  variable: "--font-script",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
   title: "Studio Ello | Projetos de Interiores online para todo o Brasil",
   description:
-    "Projetos de interiores residenciais e comerciais com imagens 3D realistas, marcenaria, iluminação e detalhamento para a obra. Mais de 5 mil projetos entregues, 100% online. Nota 5,0 no Google.",
+    "Projetos de interiores residenciais e comerciais com imagens 3D, marcenaria, iluminação e detalhamento para a obra. Mais de 5 mil projetos entregues, 100% online. Nota 5,0 no Google.",
   openGraph: {
     title: "Studio Ello · E Projetos e Interiores",
-    description: "Projetos incríveis, online para todo o Brasil. Mais de 5 mil projetos entregues.",
+    description: "Projetos de interiores online, para todo o Brasil. Mais de 5 mil projetos entregues.",
     locale: "pt_BR",
     type: "website",
   },
@@ -28,7 +35,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${cormorant.variable} ${inter.variable} antialiased`}>
+    <html lang="pt-BR" className={`${playfair.variable} ${manrope.variable} ${script.variable} antialiased`}>
       <body>{children}</body>
     </html>
   );

@@ -25,13 +25,13 @@ export function ContactForm() {
   };
 
   const field =
-    "w-full border border-line bg-cream px-3.5 py-3 text-[0.88rem] text-ink placeholder:text-muted focus:border-bronze focus:outline-none";
+    "w-full border border-line bg-coal px-3.5 py-3 text-[0.9rem] text-cream placeholder:text-sand focus:border-gold focus:outline-none";
 
   return (
-    <form onSubmit={submit} className="grid gap-3 bg-white p-5 sm:grid-cols-2 md:p-7">
+    <form onSubmit={submit} className="grid gap-3 border border-line bg-umber p-5 sm:grid-cols-2 md:p-7">
       <div className="sm:col-span-2">
         <p className="t-h3">Conta pra gente o que você quer mudar</p>
-        <p className="mt-1 text-[0.85rem] text-muted">Ao enviar, a conversa continua no WhatsApp.</p>
+        <p className="mt-1 text-[0.85rem] text-sand">Ao enviar, a conversa continua no WhatsApp.</p>
       </div>
       <input required value={f.name} onChange={set("name")} placeholder="Nome *" aria-label="Nome" className={field} />
       <input type="tel" value={f.phone} onChange={set("phone")} placeholder="Telefone" aria-label="Telefone" className={field} />
@@ -50,7 +50,7 @@ export function ContactForm() {
         aria-label="Mensagem"
         className={`${field} resize-none sm:col-span-2`}
       />
-      <button type="submit" className="btn btn-dark justify-center sm:col-span-2">
+      <button type="submit" className="bg-gold py-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-night transition-colors hover:bg-gold-light sm:col-span-2">
         Enviar
       </button>
     </form>

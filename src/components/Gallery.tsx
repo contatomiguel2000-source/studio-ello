@@ -32,7 +32,7 @@ export function Gallery() {
             aria-selected={tag === t}
             onClick={() => setTag(t)}
             className={`px-3 py-1.5 text-[0.85rem] font-medium transition-colors ${
-              tag === t ? "bg-ink text-white" : "border border-line bg-white text-ink hover:border-bronze"
+              tag === t ? "bg-gold text-night" : "border border-line text-cream hover:border-gold"
             }`}
           >
             {t}
@@ -46,7 +46,7 @@ export function Gallery() {
             key={g.src}
             type="button"
             onClick={() => setZoom(i)}
-            className="group mb-3 block w-full overflow-hidden bg-sand md:mb-4"
+            className="group mb-3 block w-full overflow-hidden bg-umber md:mb-4"
             aria-label={`Ampliar: ${g.alt}`}
           >
             <Image
@@ -63,7 +63,7 @@ export function Gallery() {
       </div>
 
       {zoom !== null && items[zoom] && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/92 p-4" onClick={() => setZoom(null)} role="dialog" aria-modal="true" aria-label={items[zoom].alt}>
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-night/95 p-4" onClick={() => setZoom(null)} role="dialog" aria-modal="true" aria-label={items[zoom].alt}>
           <div className="relative h-[86vh] w-full max-w-6xl">
             <Image src={asset(items[zoom].src)} alt={items[zoom].alt} fill quality={90} sizes="100vw" className="object-contain" />
           </div>
